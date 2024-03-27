@@ -77,4 +77,4 @@ if __name__ == "__main__":
     username = input("Carleton username: ")
     password = getpass.getpass("Carleton password: ")
     
-    main(url, username, password)
+    main(username, password)
