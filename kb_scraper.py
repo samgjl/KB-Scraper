@@ -97,7 +97,7 @@ class KBScraper:
         # Delete articles:
         successes = {}
         i = 0
-        for article_id in tqdm(df["ID"][:2]):
+        for article_id in tqdm(df["ID"]):
             successes[article_id] = self.delete_article(article_id)
             if gui:
                 i += 1
