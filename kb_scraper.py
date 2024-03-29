@@ -1,21 +1,25 @@
 import sys
 import pandas
 from tqdm import tqdm
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import getpass # for password input
 
 class KBScraper:
-    def __init__(self, username: str = "", password: str = "", headless: bool = False):
+    def __init__(self, username: str = "", password: str = "", service: str = "chrome", headless: bool = False):
         # Cleaning username:
         if len(username) < 14 or "@carleton.edu" != username[-13:]:
             username += "@carleton.edu"
         self.username = username
         self.password = password
-        self.driver = self.get_driver(headless=headless)
+        self.driver = self.get_driver(service=service, headless=headless)
         
-    
+    # Returns a webdriver object for the given service.
+    # * PARAMS:
+    # * * service: str - the service to use, either "chrome" or "firefox"
+    # * * headless: bool - whether or not to run the browser in headless mode
+    # * RETURNS:
+    # * * webdriver.Chrome | webdriver.Firefox -> the driver object
     def get_driver(self, service: str = "chrome", headless: bool = False) -> webdriver.Chrome | webdriver.Firefox:        
         if service.lower() == "firefox":
             options = webdriver.FirefoxOptions()
@@ -34,10 +38,18 @@ class KBScraper:
         return self.driver
 
 
-    # testing for now
+    # Logs into the KB with the given username and password.
+    # * PARAMS:
+    # * * username: str - the username to log in with
+    # * * password: str - the password to log in with
+    # * RETURNS: 
+    # * * webdriver.Chrome | webdriver.Firefox - the driver that is now logged in
     def log_in(self, username, password) -> webdriver.Chrome | webdriver.Firefox:
         # login url for KB:
         url = r"https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/Login.aspx?ReturnUrl=%2fSBTDClient%2f2092%2fCarleton%2fHome%2f"
+        if not self.driver:
+            self.driver = self.get_driver()
+            
         self.driver.get(url) 
         self.driver.maximize_window()
         
@@ -48,7 +60,12 @@ class KBScraper:
         
         return self.driver
 
-    # True if deleted, False if not.
+    # Deletes an article with the given ID.
+    # * PARAMS:
+    # * * article_id: int - the ID of the article to delete
+    # * * base_url: str - the base url for the KB
+    # * RETURNS:
+    # * * bool - whether or not the article was deleted
     def delete_article(self, article_id: int, base_url: str = "https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/KB/EditDetails") -> bool:
         
         self.driver.get(base_url + f"?ID={article_id}")
@@ -61,38 +78,45 @@ class KBScraper:
             self.driver.switch_to.alert.accept()
             return True
         except:
-            print(f"Article {article_id} not deletable.")
             return False
-                
-
-    def example(self):
-        self.log_in(self.username, self.password)
-        successes = self.delete_from_csv("Articles-03-27-2024.csv")
-        self.dict_to_file(successes, "Deletion-Results.csv")
-        # self.delete_article(150038)
-        
-    def dict_to_file(self, dictionary, path) -> None:
+     
+    # Writes a dictionary to a csv file.
+    def dict_to_file(self, dictionary: dict, path: str) -> None:
         with open(path, "w") as f:
             f.write("Article ID, Deleted?\n")
             f.write("\n".join([f"{key}, {value}" for key, value in dictionary.items()]))
         
-    def delete_from_csv(self, csv_path):  
+    # Deletes articles from a csv file.
+    # * PARAMS:
+    # * * csv_path: str - the path to the csv file
+    # * RETURNS:
+    # * * dict - a dictionary of article IDs and whether or not they were deleted
+    def delete_from_csv(self, csv_path: str, gui = False) -> dict: 
+        csv_path.replace("\\", "/") # clean the input
         df = pandas.read_csv(csv_path)
+        # Delete articles:
         successes = {}
-        for article_id in tqdm(df["ID"][:10]):
+        i = 0
+        for article_id in tqdm(df["ID"][:2]):
             successes[article_id] = self.delete_article(article_id)
-        
+            if gui:
+                i += 1
+                deleted = "deleted." if successes[article_id] else "FAILED."
+                print(f"Article {article_id} {deleted} ({i/len(successes)}%)")
         return successes
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        url = r''.join(sys.argv[1])
+        csv_path = sys.argv[1]
     else:
-        url = r"https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/KB/"
-
+        csv_path = input("Path to csv file: ")
+    # Get username and password:
     username = input("Carleton username: ")
     password = getpass.getpass("Carleton password: ")
-    
+    # Delete articles from dedicated csv file:
     scraper = KBScraper(username=username, password=password)
-    scraper.example()
+    scraper.log_in(scraper.username, scraper.password)
+    successes = scraper.delete_from_csv(csv_path=csv_path)
+    scraper.dict_to_file(successes, "results.csv")
+    scraper.driver.quit()
