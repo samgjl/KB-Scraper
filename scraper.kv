@@ -1,0 +1,81 @@
+#:kivy 2.3.0
+
+<ScraperGUI>:
+    canvas.before:
+        Color:
+            rgba: 1/8, 1/8, 1/8, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    Label:
+        font_size: 36  
+        center_x:root.width/2
+        top: root.top * 0.9
+        text: "Automated KB Deletion"
+
+    Label:
+        id: username_label
+        font_size: 24
+        center_x: root.width/20 + self.width/2
+        top: root.top * 3/4
+        text: "Username:"
+    TextInput:
+        id: username_input
+        width: 200
+        center_x: root.width/3 + self.width/2
+        top: root.top * 0.7075
+        height: 36
+        hint_text: "username"
+    
+    Label: 
+        id: password_label
+        font_size: 24
+        center_x: root.width/20 + self.width/2
+        top: root.top * 0.69
+        text: "Password:"
+    TextInput:
+        id: password_input
+        width: 200
+        center_x: root.width/3 + self.width/2
+        top: root.top * 0.6475
+        height: 36
+        hint_text: "password"
+        password: True
+
+    Label:
+        id: csv_label
+        font_size: 24
+        center_x: root.width/20 + self.width/2
+        top: root.top * 0.6
+        text: "CSV path:"
+    TextInput:
+        id: csv_input
+        width: 200
+        center_x: root.width/3 + self.width/2
+        top: root.top * 0.5525
+        height: 36
+        hint_text: "filepath"
+
+    Button:
+        id: execute
+        text: "Execute"
+        height: 48
+        width: 121
+        center_x: root.width/20 + self.width/2
+        top: root.top/2 - 10
+        background_color: 0.5, 0.2, 0.2, 1
+        on_press: self.background_color = (2, 0, 0, 1)
+        on_release: 
+            self.background_color = (0.5, 0.2, 0.2, 1)
+            root.execute()
+
+    CheckBox:
+        id: headless
+        top: root.top * 0.43
+
+        Label:
+            text: "Headless Mode"
+            center_x: root.width/5 + self.width/2
+            top: root.ids.headless.y + root.ids.headless.height
