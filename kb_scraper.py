@@ -67,7 +67,6 @@ class KBScraper:
     # * RETURNS:
     # * * bool - whether or not the article was deleted
     def delete_article(self, article_id: int, base_url: str = "https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/KB/EditDetails") -> bool:
-        
         self.driver.get(base_url + f"?ID={article_id}")
         
         # Make sure we are allowed to delete:
@@ -92,7 +91,7 @@ class KBScraper:
     # * RETURNS:
     # * * dict - a dictionary of article IDs and whether or not they were deleted
     def delete_from_csv(self, csv_path: str, gui = False) -> dict: 
-        csv_path.replace("\\", "/") # clean the input
+        csv_path = csv_path.replace("\\", "/") # clean the input
         df = pandas.read_csv(csv_path)
         # Delete articles:
         successes = {}
