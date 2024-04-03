@@ -28,7 +28,7 @@
         center_x: root.width/3 + self.width/2
         top: root.top * 0.7075
         height: 36
-        hint_text: "username"
+        hint_text: "Carleton username"
     
     Label: 
         id: password_label
@@ -75,8 +75,8 @@
         id: help
         markup: True
         font_size: 18
-        text: "[i](or drop a file on this window)[/i]"
-        center_x: root.ids.csv_input.center_x + (self.width/8)
+        text: "[i](or drop a CSV file on this window)[/i]"
+        center_x: root.ids.csv_input.center_x + (self.width/3)
         top: root.top * 0.55 
 
     CheckBox:
@@ -84,8 +84,8 @@
         top: root.top * 0.4
         
         Label:
-            text: "Headless Mode"
-            center_x: root.width/5 + self.width/2
+            text: "Headless Mode (no visuals)"
+            center_x: root.width/5 + self.width * 0.9
             top: root.ids.headless.y + root.ids.headless.height
 
     Label:

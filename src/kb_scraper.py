@@ -81,10 +81,11 @@ class KBScraper:
      
     # Writes a dictionary to a csv file.
     def dict_to_file(self, dictionary: dict, path: str) -> None:
+        print("Writing results to file...")
         with open(path, "w") as f:
             f.write("Article ID, Deleted?\n")
             f.write("\n".join([f"{key}, {value}" for key, value in dictionary.items()]))
-        
+       
     # Deletes articles from a csv file.
     # * PARAMS:
     # * * csv_path: str - the path to the csv file
@@ -94,14 +95,14 @@ class KBScraper:
         csv_path = csv_path.replace("\\", "/") # clean the input
         df = pandas.read_csv(csv_path)
         # Delete articles:
-        successes = {}
+        successes = {key: True for key in df["ID"]}
         i = 0
         for article_id in tqdm(df["ID"]):
             successes[article_id] = self.delete_article(article_id)
             if gui:
                 i += 1
                 deleted = "deleted." if successes[article_id] else "FAILED."
-                print(f"Article {article_id} {deleted} ({i/len(successes)}%)")
+                print(f"Article {article_id} {deleted} ({i}/{len(successes.keys())})")
         return successes
 
 
