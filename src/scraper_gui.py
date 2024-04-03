@@ -36,8 +36,11 @@ class ScraperGUI(Widget):
             return False
         
         # Web scraper:
-        scraper = KBScraper(username=username, password=password, service="chrome", headless=headless)
-        scraper.log_in(scraper.username, scraper.password)
+        scraper = KBScraper(username=username, password=password, service="chrome", headless=headless)        
+        if not scraper.log_in(scraper.username, scraper.password):
+            self.ids.errors.text = "Incorrect username/password."
+            return False
+        
         successes = scraper.delete_from_csv(csv_path=csv_path, gui=True)
         # Write results to file:
         scraper.dict_to_file(successes, "results.csv")

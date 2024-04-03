@@ -46,7 +46,7 @@ class KBScraper:
     # * * webdriver.Chrome | webdriver.Firefox - the driver that is now logged in
     def log_in(self, username, password) -> webdriver.Chrome | webdriver.Firefox:
         # login url for KB:
-        url = r"https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/Login.aspx?ReturnUrl=%2fSBTDClient%2f2092%2fCarleton%2fHome%2f"
+        url = r"https://stolafcarleton.teamdynamix.com/TDClient/2092/Carleton/Login.aspx?ReturnUrl=%2fSBTDClient%2f2092%2fCarleton%2fHome%2f"
         if not self.driver:
             self.driver = self.get_driver()
             
@@ -57,8 +57,18 @@ class KBScraper:
         self.driver.find_element(By.ID, "txtUserName").send_keys(username)
         self.driver.find_element(By.ID, "txtPassword").send_keys(password)
         self.driver.find_element(By.ID, "btnSignIn").click()
-        
-        return self.driver
+                
+        # Really ugly workaround to see if we're logged in:
+        try:
+            self.driver.implicitly_wait(3)
+            self.driver.find_element(By.CLASS_NAME, "alert-danger")
+            print("Login failed. Please check your username and password.")
+            self.driver.quit()
+            return None
+        except:
+            self.driver.implicitly_wait(0)
+            print("Login successful.")
+            return self.driver
 
     # Deletes an article with the given ID.
     # * PARAMS:
@@ -66,7 +76,7 @@ class KBScraper:
     # * * base_url: str - the base url for the KB
     # * RETURNS:
     # * * bool - whether or not the article was deleted
-    def delete_article(self, article_id: int, base_url: str = "https://stolafcarleton.teamdynamix.com/SBTDClient/2092/Carleton/KB/EditDetails") -> bool:
+    def delete_article(self, article_id: int, base_url: str = "https://stolafcarleton.teamdynamix.com/TDClient/2092/Carleton/KB/EditDetails") -> bool:
         self.driver.get(base_url + f"?ID={article_id}")
         
         # Make sure we are allowed to delete:
