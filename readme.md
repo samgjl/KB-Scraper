@@ -1,5 +1,6 @@
-## Necessary Actions:
-- Get Chrome driver?
+## Installation Guide
+1. Clone this repository (```git clone https://github.com/samgjl/KB-Scraper.git```)
+2. If you're on Windows, Open ```windows/dist``` and create a shortcut to ```KB Scraper.exe```. Move this wherever you would like.
 
 ## GUI User Guide
 ### Launching
