@@ -1,7 +1,0 @@
-('C:\\Users\\samue\\OneDrive\\Documents\\GitHub\\KB-Scraper\\venv\\share\\glew\\bin',
- None,
- [],
- 'DATA',
- [('glew32.dll',
-   'C:\\Users\\samue\\OneDrive\\Documents\\GitHub\\KB-Scraper\\venv\\share\\glew\\bin\\glew32.dll',
-   'DATA')])
