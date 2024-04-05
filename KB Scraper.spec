@@ -35,5 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['../src/ITS_logo.ico'],
+    icon = ['../src/TDX_logo.ico']
+    # icon=['../src/ITS_logo.ico'],
 )

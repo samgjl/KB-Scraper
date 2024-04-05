@@ -2,18 +2,24 @@ import logging
 import kivy
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.uix.image import Image
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
 from kivy.core.window import Window
-from kivy.config import Config
 from kb_scraper import KBScraper
 
+# The following ensures the image loads properly in the packaged app:
+import sys
+import kivy.resources
+
+if getattr(sys, 'frozen', False):
+    # this is a Pyinstaller bundle
+    kivy.resources.resource_add_path(sys._MEIPASS)
+
+# Proper window sizing:
+from kivy.config import Config
 Config.set("graphics", "resizable", True)
 Config.set("graphics", "width", 360)
 Config.set("graphics", "height", 512)
 Config.write()
+
 kivy.require("2.1.0")
 
 class ScraperGUI(Widget): 
@@ -22,7 +28,6 @@ class ScraperGUI(Widget):
         logging.getLogger("selenium").setLevel(logging.WARN)
         logging.getLogger("urllib3").setLevel(logging.WARN)
         self.ids.errors.text = ' ' # clear errors
-        print(Window.size)
 
         # Get inputs:
         username = self.ids.username_input.text
