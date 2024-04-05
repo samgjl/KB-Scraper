@@ -2,18 +2,27 @@ import logging
 import kivy
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.core.window import Window
+from kivy.config import Config
 from kb_scraper import KBScraper
 
+Config.set("graphics", "resizable", True)
+Config.set("graphics", "width", 360)
+Config.set("graphics", "height", 512)
+Config.write()
 kivy.require("2.1.0")
 
 class ScraperGUI(Widget): 
     def execute(self):
+        # Make logging less annoying
         logging.getLogger("selenium").setLevel(logging.WARN)
         logging.getLogger("urllib3").setLevel(logging.WARN)
+        self.ids.errors.text = ' ' # clear errors
+        print(Window.size)
 
         # Get inputs:
         username = self.ids.username_input.text
@@ -59,7 +68,7 @@ class ScraperGUI(Widget):
     
 class ScraperApp(App):
     def build(self):
-        Window.size = (360, 512)
+        # Window.size = (360, 512)
         gui = ScraperGUI() 
         Window.bind(on_dropfile=gui.on_drop_file)
         # Bind the events to the corresponding methods

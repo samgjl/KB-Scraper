@@ -3,89 +3,110 @@
 <ScraperGUI>:
     canvas.before:
         Color:
-            rgba: 1/8, 1/8, 1/8, 1
+            rgb: 1, 1, 1, 1
         Rectangle:
             id: background
             pos: self.pos
             size: self.size
-
-
-    Label:
-        font_size: 36  
-        center_x:root.width/2
-        top: root.top * 0.9
-        text: "Automated KB Deletion"
+            source: "bgkd.png"
 
     Label:
+        markup: True
+        color: 0, 0, 0, 1
+        font_size: 36
+        width: root.width
+        top: root.top * 0.86
+        text: "[b]Automated KB Deletion[/b]"
+
+    Label:
+        markup: True
+        color: 0, 0, 0, 1
         id: username_label
-        font_size: 24
-        center_x: root.width/20 + self.width/2
+        font_size: 32
+        center_x: root.width/10 + self.width/2
         top: root.top * 3/4
-        text: "Username:"
+        text: "[b]Username:[/b]"
     TextInput:
         id: username_input
         width: 200
-        center_x: root.width/3 + self.width/2
+        center_x: root.width * 0.4 + self.width/2
         top: root.top * 0.7075
-        height: 36
+        height: 40
+        font_size: 20
         hint_text: "Carleton username"
     
     Label: 
+        markup: True
+        color: 0, 0, 0, 1
         id: password_label
-        font_size: 24
-        center_x: root.width/20 + self.width/2
+        font_size: 32
+        center_x: root.width/10 + self.width/2
         top: root.top * 0.69
-        text: "Password:"
+        text: "[b]Password:[/b]"
     TextInput:
+        color: 0, 0, 0, 1
         id: password_input
         width: 200
-        center_x: root.width/3 + self.width/2
+        center_x: root.width * 0.4 + self.width/2
         top: root.top * 0.6475
-        height: 36
+        height: 40
+        font_size: 20
         hint_text: "password"
         password: True
 
     Label:
+        markup: True
+        color: 0, 0, 0, 1
         id: csv_label
-        font_size: 24
-        center_x: root.width/20 + self.width/2
+        font_size: 32
+        center_x: root.width/10 + self.width/2
         top: root.top * 0.6
-        text: "CSV path:"
+        text: "[b]CSV path:[/b]"
     TextInput:
+        color: 0, 0, 0, 1
         id: csv_input
         width: 200
-        center_x: root.width/3 + self.width/2
+        center_x: root.width * 0.4 + self.width/2
         top: root.top * 0.5525
-        height: 36
+        height: 40
+        font_size: 20
         hint_text: "C:\...\example.csv"
 
     Button:
+        markup: True
         id: execute
-        text: "Execute"
-        height: 48
-        width: 121
+        text: "[b]Execute[/b]"
+        font_size: 32
+        height: 84
+        width: 168
         center_x: root.width/20 + self.width/2
-        top: root.top * 0.43
-        background_color: 0.5, 0.2, 0.2, 1
-        on_press: self.background_color = (2, 0, 0, 1)
+        top: root.top * 0.35
+        background_color: 1, 0, 0, 1
+        on_press:
+            self.background_color = (2, 0, 0, 1)
         on_release: 
-            self.background_color = (0.5, 0.2, 0.2, 1)
+            self.background_color = (1, 0, 0, 1)
             root.execute()
+    
     Label:
+        color: 0, 0, 0, 1
         id: help
         markup: True
-        font_size: 18
-        text: "[i](or drop a CSV file on this window)[/i]"
-        center_x: root.ids.csv_input.center_x + (self.width/3)
+        font_size: 20
+        text: "[i](or drop a CSV file here)[/i]"
+        center_x: root.ids.csv_input.center_x 
         top: root.top * 0.55 
 
     CheckBox:
         id: headless
-        top: root.top * 0.35
+        top: root.top * 0.475
+        background_color: 0, 0, 0, 1
+        color: 0.5, 0.5, 1, 1
         
         Label:
+            color: 0, 0, 0, 1
             text: "Headless Mode (no visuals)"
-            center_x: root.width/5 + self.width * 0.9
+            center_x: root.width/5 + self.width
             top: root.ids.headless.y + root.ids.headless.height
 
     Label:
