@@ -31,10 +31,11 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon = ['../src/TDX_logo.ico']
 )
 coll = COLLECT(
     exe,
-    Tree("../src/")
+    Tree("../src/"),
     a.binaries,
     a.datas,
     strip=False,
