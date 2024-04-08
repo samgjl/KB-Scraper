@@ -67,16 +67,38 @@ class ScraperGUI(Widget):
         path = file_path.decode("utf-8").replace("\\", "/")
         self.ids.csv_input.text = path
         # Do something with the dropped file here
+    
+    def on_key_up(self, keyboard, keycode, text):
+        if keycode != 9:
+            return
+        
+        username = self.ids.username_input
+        password = self.ids.password_input
+        csv_path = self.ids.csv_input
+        
+        if username.focus:
+            self.swap_focus(username, password)
+        elif password.focus:
+            self.swap_focus(password, csv_path)
+        elif csv_path.focus:
+            self.swap_focus(csv_path, username)
+    
+    def swap_focus(self, old, new) -> None:
+        old.do_backspace()
+        old.focus = False
+        new.focus = True
         
         
         
     
 class ScraperApp(App):
     def build(self):
+
         # Window.size = (360, 512)
         gui = ScraperGUI() 
-        Window.bind(on_dropfile=gui.on_drop_file)
         # Bind the events to the corresponding methods
+        Window.bind(on_dropfile=gui.on_drop_file)
+        Window.bind(on_key_up=gui.on_key_up)
         return gui
     
 if __name__ == "__main__":
