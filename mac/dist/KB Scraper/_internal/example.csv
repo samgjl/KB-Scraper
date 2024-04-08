@@ -1,0 +1,10 @@
+ID,Order,Subject,Category,Status,Published,Public,Inh. Perms,Owner,Author,Created,Modified,# Shortcuts,Read By,Revisions
+108269,1.00,Test article,None,Not Submitted,FALSE,TRUE,TRUE,Rebecca Barkmeier,Rebecca Barkmeier,5/21/20,5/21/20,0,1,1
+130861,1.00,Alumni Email Forwarding,ITS Internal - RESTRICTED / The Knowledge Base in TDX,Not Submitted,FALSE,TRUE,TRUE,Jeanne Blair,Jeanne Blair,3/24/21,3/24/21,0,4,2
+134424,1.00,About_Moodle,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,0,1
+134425,1.00,About_Moodle_FAQ,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,0,1
+134427,1.00,Activities,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,1,1
+134428,1.00,Activities_block,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,0,1
+134429,1.00,Activity_backup,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,0,1
+134430,1.00,Activity_completion,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,3,1
+134431,1.00,Activity_completion_FAQ,"Technology for Teaching, Learning and Research / Moodle",Not Submitted,FALSE,TRUE,TRUE,Carly Born,Carly Born,7/23/21,7/23/21,0,0,1
