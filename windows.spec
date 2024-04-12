@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
-    name='KB Scraper',
+    name='KB Deletion Scraper',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -35,6 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon = ['../src/TDX_logo.ico']
-    # icon=['../src/ITS_logo.ico'],
+    # icon = ['../src/TDX_logo.ico']
+    icon=['../src/ITS_logo.ico'],
 )

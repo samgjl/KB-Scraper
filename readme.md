@@ -1,10 +1,11 @@
 ## Installation Guide
 1. Clone this repository (```git clone https://github.com/samgjl/KB-Scraper.git```)
-2. If you're on Windows, Open ```windows/dist``` and create a shortcut to ```KB Scraper.exe```. Move this wherever you would like.
-
-## GUI User Guide
-### Launching
-Launch the GUI by running ```python scraper_gui.py```
+2. If you are on Windows, the executable file is in ```\windows\dist```. If you are on Mac, it is in ```/mac/dist```
+## User Guide
+### Launching Without Executable
+*If you aren't using the executable, make sure to install all the requirements!* <br> (Install Python, then run ```python -m pip install -r requirements.txt```)
+* Launch the base program by running ```python kb_scraper.py```.
+* Launch the GUI by running ```python scraper_gui.py```.
 ### Fields
 - *Username:* your username for Carleton College SSO
 - *Password:* your password for Carleton College SSO
@@ -18,9 +19,9 @@ Recompiling this software requires ```PyInstaller``` (```pip install pyinstaller
 ### Windows
 1. Open a terminal at this directory
 2. Enter the ```windows``` directory (```cd ./windows/```)
-3. Run PyInstaller's initialization script: ```python -m PyInstaller --onefile --name "KB Scraper" ../src/scraper_gui.py``` <br> *(This will take several minutes to complete)*
-4. This will create the ```build``` and ```dist``` folders, along with the ```KB Scraper.spec``` file. Replace the ```KB Scraper.spec``` file in this folder with the ```windows.spec``` file in the base directory. The new file will have all the correct compilation settings.
-5. Recompile the app with ```python -m PyInstaller "KB Scraper.spec"```.
+3. Run PyInstaller's initialization script: ```python -m PyInstaller --onefile --name "KB Deletion Scraper" ../src/scraper_gui.py``` <br> *(This will take several minutes to complete)*
+4. This will create the ```build``` and ```dist``` folders, along with the ```KB Deletion Scraper.spec``` file. Replace the text in the ```KB Deletion Scraper.spec``` file in this folder with the text from ```windows.spec``` in the base directory. The new file will have all the correct compilation settings.
+5. Recompile the app with ```python -m PyInstaller "KB Deletion Scraper.spec"```.
 
 For debugging, see [Kivy's Documentation](https://kivy.org/doc/stable/guide/packaging-windows.html).
 
@@ -38,7 +39,7 @@ pyinstaller -y --clean --windowed --name touchtracer \
   /usr/local/share/kivy-examples/demo/touchtracer/main.py
 ```
 
-4. This will create the ```build``` and ```dist``` folders, along with the ```KB Scraper.spec``` file. Replace the ```KB Scraper.spec``` file in this folder with the ```mac.spec``` file in the base directory. The new file will have all the correct compilation settings.
-5. Recompile the app with ```pyinstaller -y --clean 'KB Scraper.spec'```.
+1. This will create the ```build``` and ```dist``` folders, along with the ```KB Deletion Scraper.spec``` file. Replace the text in the ```KB Deletion Scraper.spec``` file in this folder with the text from ```mac.spec``` in the base directory. The new file will have all the correct compilation settings.
+2. Recompile the app with ```pyinstaller -y --clean 'KB Deletion Scraper.spec'```.
 
 For debugging, see [Kivy's Documentation](https://kivy.org/doc/stable/guide/packaging-osx.html).

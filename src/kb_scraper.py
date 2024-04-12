@@ -1,4 +1,5 @@
 import sys
+import time
 import pandas
 from tqdm import tqdm
 from selenium import webdriver
@@ -128,5 +129,6 @@ if __name__ == "__main__":
     scraper = KBScraper(username=username, password=password)
     scraper.log_in(scraper.username, scraper.password)
     successes = scraper.delete_from_csv(csv_path=csv_path)
-    scraper.dict_to_file(successes, "results.csv")
+    t = time.localtime()
+    scraper.dict_to_file(successes,f"KB Deletion - Results {t.tm_year}-{t.tm_mon}-{t.tm_mday}__{t.tm_hour}{t.tm_min}{t.tm_sec}.csv")
     scraper.driver.quit()

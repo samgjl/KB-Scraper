@@ -20,7 +20,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='KB Scraper',
+    name='KB Deletion Scraper',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -31,7 +31,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon = ['../src/TDX_logo.ico']
+    icon = ['../src/ITS_logo.ico']
 )
 coll = COLLECT(
     exe,
@@ -41,7 +41,7 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='KB Scraper',
+    name='KB Deletion Scraper',
 )
 app = BUNDLE(
     coll,
