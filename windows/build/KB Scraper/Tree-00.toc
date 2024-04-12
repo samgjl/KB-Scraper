@@ -11,7 +11,4 @@
   ('TDX_logo.ico', '../src/TDX_logo.ico', 'DATA'),
   ('__pycache__\\kb_scraper.cpython-310.pyc',
    '../src/__pycache__\\kb_scraper.cpython-310.pyc',
-   'DATA'),
-  ('__pycache__\\kb_scraper.cpython-311.pyc',
-   '../src/__pycache__\\kb_scraper.cpython-311.pyc',
    'DATA')])
