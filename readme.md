@@ -1,7 +1,16 @@
-## Installation Guide
-1. Clone this repository (```git clone https://github.com/samgjl/KB-Scraper.git```)
-2. If you are on Windows, the executable file is in ```\windows\dist```. If you are on Mac, it is in ```/mac/dist```
-## User Guide
+# Installation
+## Executables
+### Windows:
+- Download ```KB Scraper.exe``` from [```KB-Scraper/windows/dist/KB Deletion Scraper.exe```](https://github.com/samgjl/KB-Scraper/blob/main/windows/dist/KB%20Deletion%20Scraper.exe) (CTRL+Shift+D).
+### Mac:
+1. Clone this repository (```git clone https://github.com/samgjl/KB-Scraper.git```).
+2. Locate the executable file at ```mac/dist/KB Deletion Scraper.exe```. <br> You can either move this file to your desired location, or create a shortcut.
+
+## Full code:
+- Clone this repository (```git clone https://github.com/samgjl/KB-Scraper.git```)
+- You can launch from the python files n ```/src/```.
+
+# Usage
 ### Launching Without Executable
 *If you aren't using the executable, make sure to install all the requirements!* <br> (Install Python, then run ```python -m pip install -r requirements.txt```)
 * Launch the base program by running ```python kb_scraper.py```.
@@ -12,9 +21,8 @@
 - *CSV Path:* the path to the CSV file (note: if the file is not in the same folder, you must provide the __absolute__ filepath)
 - *Headless:* If checked, this will allow the program to open the browser without visuals. This is best for multitasking
 
-
-## Recompiling the application
-Recompiling this software requires ```PyInstaller``` (```pip install pyinstaller```), <br> along with all packages in ```requirements.txt``` *(```python -m pip install -r requirements.txt```)*
+# Building from source
+This software requires ```PyInstaller``` (```pip install pyinstaller```), <br> along with all packages in ```requirements.txt``` *(```python -m pip install -r requirements.txt```)*
 
 ### Windows
 1. Open a terminal at this directory
@@ -31,12 +39,12 @@ For debugging, see [Kivy's Documentation](https://kivy.org/doc/stable/guide/pack
 3. Run PyInstaller's initialization script: 
 
 ```bash
-pyinstaller -y --clean --windowed --name touchtracer \
+pyinstaller -y --clean --onefile --windowed --name "KB Deletion Scraper" \
   --exclude-module _tkinter \
   --exclude-module Tkinter \
   --exclude-module enchant \
   --exclude-module twisted \
-  /usr/local/share/kivy-examples/demo/touchtracer/main.py
+  ../src/scraper_gui.py
 ```
 
 1. This will create the ```build``` and ```dist``` folders, along with the ```KB Deletion Scraper.spec``` file. Replace the text in the ```KB Deletion Scraper.spec``` file in this folder with the text from ```mac.spec``` in the base directory. The new file will have all the correct compilation settings.
