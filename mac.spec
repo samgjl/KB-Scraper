@@ -45,7 +45,7 @@ coll = COLLECT(
 )
 app = BUNDLE(
     coll,
-    name='KB Scraper.app',
+    name='KB Deletion Scraper.app',
     icon=None,
     bundle_identifier=None,
 )

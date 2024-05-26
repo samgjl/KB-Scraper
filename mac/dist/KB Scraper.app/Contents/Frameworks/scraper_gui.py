@@ -1,1 +1,0 @@
-../Resources/scraper_gui.py
