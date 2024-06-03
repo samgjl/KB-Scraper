@@ -72,7 +72,7 @@
  [],
  False,
  False,
- 1713382570,
+ 1717436589,
  [('runw',
    '/Users/johnsonlacosss/Documents/GitHub/KB-Scraper/venv/lib/python3.10/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')],

@@ -30,10 +30,10 @@ class ScraperGUI(Widget):
         self.ids.errors.text = ' ' # clear errors
 
         # Get inputs:
-        username = self.ids.username_input.text
-        password = self.ids.password_input.text 
-        csv_path = self.ids.csv_input.text
-        headless = self.ids.headless.active
+        username: str = self.ids.username_input.text
+        password: str = self.ids.password_input.text 
+        csv_path: str = self.ids.csv_input.text
+        headless: bool = self.ids.headless.active
 
         # Check for empty inputs:
         if username == "":
@@ -57,7 +57,8 @@ class ScraperGUI(Widget):
         
         successes = scraper.delete_from_csv(csv_path=csv_path, gui=True)
         # Write results to file:
-        scraper.dict_to_file(successes, "results.csv")
+        path = csv_path.replace(".csv", "_results.csv")
+        scraper.dict_to_file(successes, path)
         scraper.driver.quit()
     
     def on_drop_file(self, window, file_path, *args):
